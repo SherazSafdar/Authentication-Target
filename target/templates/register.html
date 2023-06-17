@@ -1,22 +1,30 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>User Registration</title>
+  <title>User Registration</title>
 </head>
 <body>
-    <h1>User Registration</h1>
-    <form method="post" action="{% url 'register' %}">
-        {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br><br>
-        <p> Already have account <a href="{% url 'login' %}">Login</a> </p>
-        <input type="submit" value="SignUP">
-    </form>
+  <h2>User Registration</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register">
+  </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
