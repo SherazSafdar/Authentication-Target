@@ -2,10 +2,12 @@ from target import views
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.urls import path
+from .views import login_view
 
 urlpatterns = [
     path('register/', views.register, name='register'),
-    #path('login/', views.login_user, name='login'),
+    path('login/', views.login_view, name='login'),
     #path('forget/', views.forget_password, name='forget_password'),
     # django built in provide password change, reset etc.
     #path('logout/', auth_views.LogoutView.as_view(), name='logout'),

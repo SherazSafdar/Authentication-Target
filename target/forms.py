@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
+#user registration
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
@@ -18,3 +20,8 @@ class UserRegistrationForm(forms.ModelForm):
             self.add_error('confirm_password', "Passwords do not match")
 
         return cleaned_data
+    
+    
+    #Create a class  login form by inheriting from AuthenticationForm
+class LoginForm(AuthenticationForm):
+    pass

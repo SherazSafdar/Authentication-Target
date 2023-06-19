@@ -1,21 +1,16 @@
-<!--<html>
+<html>
 <head>
-    <title>User Login</title>
+    <title>Login</title>
 </head>
 <body>
-    <h1>User Login</h1>
-    <form method="post" action="{% url 'login' %}">
+    <h2>Login</h2>
+    <form method=="POST">
         {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br><br>
+        {{ form.as_p }}
         <input type="submit" value="Login">
-        <p> forget password <a href="{% url 'forget_password' %}">Forget password</a> </p>
-    </form>
-    
-      
+    </from>
+
+
 </body>
-</html>-->
+
+</html>
