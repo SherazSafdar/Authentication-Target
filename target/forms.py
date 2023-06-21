@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
+from .models import UserProfile
 
 #user registration
 class UserRegistrationForm(forms.ModelForm):
@@ -25,3 +26,11 @@ class UserRegistrationForm(forms.ModelForm):
     #Create a class  login form by inheriting from AuthenticationForm
 class LoginForm(AuthenticationForm):
     pass
+
+
+#enable users to view and update their profiles.
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['user', 'date_of_birth', 'phone_number', 'address']

@@ -7,7 +7,10 @@ from .views import login_view
 
 urlpatterns = [
     path('register/', views.register, name='register'),
+    path('registration_success/', views.registration_success, name='registration_success'),
     path('login/', views.login_view, name='login'),
+    path('profile/', views.profile, name='profile'),
+    path('updateprofile/', views.update_profile, name='update_profile')
     #path('forget/', views.forget_password, name='forget_password'),
     # django built in provide password change, reset etc.
     #path('logout/', auth_views.LogoutView.as_view(), name='logout'),
