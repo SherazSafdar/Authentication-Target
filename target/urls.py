@@ -10,7 +10,8 @@ urlpatterns = [
     path('registration_success/', views.registration_success, name='registration_success'),
     path('login/', views.login_view, name='login'),
     path('profile/', views.profile, name='profile'),
-    path('updateprofile/', views.update_profile, name='update_profile')
+    path('profile_create/', views.profile_create, name='profile_create'),
+    path('update_profile/', views.update_profile, name='update_profile'),
     #path('forget/', views.forget_password, name='forget_password'),
     # django built in provide password change, reset etc.
     #path('logout/', auth_views.LogoutView.as_view(), name='logout'),

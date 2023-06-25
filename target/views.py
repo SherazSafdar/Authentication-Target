@@ -40,8 +40,19 @@ def login_view(request):
 # users to view their profiles function
 
 def profile(request):
-    user_profile = request.user.userprofile
-    return render(request, 'profile.html', {'profile':user_profile})    
+    if request.method=="POST":
+        form = UserProfileForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('profile_create')
+    else:
+        form = UserRegistrationForm()
+        return render(request, 'profile.html', {'form':form})
+    
+#profile create successfull function
+def profile_create(request):
+    return render(request, 'profile_create.html')
+                 
 
 # users to update their profiles function        
         
