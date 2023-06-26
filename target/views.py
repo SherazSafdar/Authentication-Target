@@ -45,6 +45,8 @@ def profile(request):
         if form.is_valid:
             form.save()
             return redirect('profile_create')
+        else:
+            return render(request,'profie_create.html',{'form':form})
     else:
         form = UserProfileForm()
         return render(request, 'profile.html', {'form':form})
