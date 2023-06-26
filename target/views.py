@@ -46,7 +46,7 @@ def profile(request):
             form.save()
             return redirect('profile_create')
     else:
-        form = UserRegistrationForm()
+        form = UserProfileForm()
         return render(request, 'profile.html', {'form':form})
     
 #profile create successfull function
