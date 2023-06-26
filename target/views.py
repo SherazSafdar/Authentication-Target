@@ -42,14 +42,17 @@ def login_view(request):
 def profile(request):
     if request.method=="POST":
         form = UserProfileForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect('profile_create')
+        if form.is_valid():
+            profile = form.save(commit=False)
+            if request.user.is_authenticated:
+                profile.user = request.user
+                profile.save()
+                return redirect('profile_create')
         else:
-            return render(request,'profie_create.html',{'form':form})
+            return render(request,'profile_create.html',{'form':form})
     else:
         form = UserProfileForm()
-        return render(request, 'profile.html', {'form':form})
+        return render(request, 'login.html', {'form':form})
     
 #profile create successfull function
 def profile_create(request):
