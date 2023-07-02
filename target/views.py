@@ -4,6 +4,7 @@ from .forms import UserRegistrationForm
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from .forms import UserProfileForm
+from .models import UserProfile
 
 #register function
 def register(request):
@@ -44,8 +45,9 @@ def login_success(request):
 # users to view their profiles function
 
 def profile(request):
+    profile = UserProfile.objects.filter(user=request.user).first()
     if request.method=="POST":
-        form = UserProfileForm(request.POST, instance=request.user.profile)
+        form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             if request.user.is_authenticated:
@@ -56,8 +58,8 @@ def profile(request):
             return render(request,'profile_create.html',{'form':form})
     else:
         if request.user.is_authenticated:
-            form = UserProfileForm(instance=request.user.profile)
-            return render(request, 'profile_create.html', {'form':form})
+            form = UserProfileForm(instance=profile)
+            return render(request, 'profile.html', {'form':form})
         else:
             return render(request, 'login.html')
     
