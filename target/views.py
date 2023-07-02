@@ -32,10 +32,14 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 #redirect succes page
-                return redirect('registration_success')
+                return redirect('login_success')
     else:
         form = LoginForm()
-        return render(request, 'login.html', {'form':form})        
+        return render(request, 'login.html', {'form':form})  
+    
+# after login success
+def login_success(request):
+    return render(request, 'login_success.html')      
     
 # users to view their profiles function
 
@@ -51,8 +55,11 @@ def profile(request):
         else:
             return render(request,'profile_create.html',{'form':form})
     else:
-        form = UserProfileForm(instance=request.user.profile)
-        return render(request, 'login.html', {'form':form})
+        if request.user.is_authenticated:
+            form = UserProfileForm(instance=request.user.profile)
+            return render(request, 'profile_create.html', {'form':form})
+        else:
+            return render(request, 'login.html')
     
 #profile create successfull function
 def profile_create(request):
