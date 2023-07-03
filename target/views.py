@@ -46,7 +46,10 @@ def login_success(request):
 
 def profile(request):
     profile = UserProfile.objects.filter(user=request.user).first()
-    if request.method=="POST":
+    if profile is None:
+        profile = UserProfile(user=request.user)
+
+    if request.method == "POST":
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
@@ -55,14 +58,14 @@ def profile(request):
                 profile.save()
                 return redirect('profile_create')
         else:
-            return render(request,'profile_create.html',{'form':form})
+            print(form.errors)
+            return render(request, 'profile_create.html', {'form': form})
     else:
         if request.user.is_authenticated:
             form = UserProfileForm(instance=profile)
-            return render(request, 'profile.html', {'form':form})
+            return render(request, 'profile.html', {'form': form})
         else:
-            return render(request, 'login.html')
-    
+            return render(request, 'login.html')    
 #profile create successfull function
 def profile_create(request):
     return render(request, 'profile_create.html')
